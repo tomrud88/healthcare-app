@@ -1,0 +1,156 @@
+{
+  "palette": {
+    "white": "#FFFFFF",
+    "lightGray": "#FDFDFD",
+    "gray": "#E0E0E0",
+    "mediumGray": "#C4C4C4",
+    "darkGray": "#1E1E1E",
+    "primaryBlue": "#5B73FF",
+    "blueHover": "#445CE0",
+    "successGreen": "#00B074",
+    "warningOrange": "#FF9F43",
+    "dangerRed": "#FF4D4F",
+    "badgePink": "#FDEBEE",
+    "shadow": "rgba(0, 0, 0, 0.08)"
+  },
+  "elementStyling": {
+    "cards": {
+      "background": "#FFFFFF",
+      "border": "#E0E0E0",
+      "radius": "16px",
+      "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)",
+      "icons": {
+        "fill": "#5B73FF",
+        "background": "transparent"
+      },
+      "text": {
+        "title": "#1E1E1E",
+        "subtitle": "#707070",
+        "statusApproved": "#00B074",
+        "statusPending": "#FF9F43",
+        "statusCompleted": "#445CE0"
+      }
+    },
+    "buttons": {
+      "primary": {
+        "background": "#5B73FF",
+        "text": "#FFFFFF",
+        "hover": {
+          "background": "#445CE0"
+        },
+        "pressed": {
+          "background": "#3346B3"
+        },
+        "disabled": {
+          "background": "#C4C4C4",
+          "text": "#FDFDFD"
+        }
+      },
+      "secondary": {
+        "background": "#FFFFFF",
+        "border": "#5B73FF",
+        "text": "#5B73FF",
+        "hover": {
+          "background": "#EEF0FF"
+        }
+      }
+    },
+    "icons": {
+      "default": "#5B73FF",
+      "warning": "#FF9F43",
+      "success": "#00B074",
+      "danger": "#FF4D4F"
+    },
+    "text": {
+      "headingLarge": "#1E1E1E",
+      "headingMedium": "#1E1E1E",
+      "body": "#707070",
+      "label": "#8A8A8A",
+      "link": "#5B73FF",
+      "timestamp": "#B0B0B0"
+    },
+    "backgrounds": {
+      "app": "#FFFFFF",
+      "highlight": "#EEF0FF",
+      "badgeApproved": "#E6FFF3",
+      "badgePending": "#FFF5E6"
+    },
+    "gradients": {
+      "hero": "linear-gradient(180deg, #F7F9FF 0%, #FFFFFF 100%)",
+      "buttonHover": "linear-gradient(90deg, #5B73FF 0%, #3346B3 100%)"
+    },
+    "shadows": {
+      "card": "0 4px 12px rgba(0,0,0,0.08)",
+      "button": "0 2px 4px rgba(0,0,0,0.1)"
+    },
+    "borderRadius": {
+      "card": "16px",
+      "button": "12px",
+      "input": "12px"
+    },
+    "inputs": {
+      "background": "#FFFFFF",
+      "border": "#E0E0E0",
+      "text": "#1E1E1E",
+      "placeholder": "#B0B0B0",
+      "focus": {
+        "border": "#5B73FF",
+        "shadow": "0 0 0 2px rgba(91, 115, 255, 0.2)"
+      }
+    },
+    "badges": {
+      "approved": {
+        "background": "#E6FFF3",
+        "text": "#00B074"
+      },
+      "pending": {
+        "background": "#FFF5E6",
+        "text": "#FF9F43"
+      }
+    }
+  },
+  "states": {
+    "button": {
+      "default": {
+        "background": "#5B73FF",
+        "text": "#FFFFFF"
+      },
+      "hover": {
+        "background": "#445CE0"
+      },
+      "pressed": {
+        "background": "#3346B3"
+      },
+      "disabled": {
+        "background": "#C4C4C4",
+        "text": "#FDFDFD"
+      }
+    },
+    "card": {
+      "default": {
+        "shadow": "0 4px 12px rgba(0, 0, 0, 0.08)"
+      },
+      "hover": {
+        "shadow": "0 6px 16px rgba(0, 0, 0, 0.1)"
+      }
+    },
+    "input": {
+      "default": {
+        "border": "#E0E0E0"
+      },
+      "focus": {
+        "border": "#5B73FF",
+        "outline": "0 0 0 2px rgba(91, 115, 255, 0.2)"
+      }
+    }
+  },
+  "doNot": {
+    "useCardGradientOnIcons": true,
+    "useButtonColorOnPlainText": true,
+    "applyShadowToText": true,
+    "applyBlueHoverGradientOutsideButtons": true,
+    "mixBadgeColorsForStatus": true,
+    "reuseBadgePinkAsBackground": true,
+    "applyRoundedCornersToIcons": false
+  }
+}
