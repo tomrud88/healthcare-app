@@ -30,7 +30,7 @@ interface BookingData {
 }
 
 const INITIAL_MESSAGE: ChatMessage = {
-  id: Date.now(), // Use timestamp for unique ID
+  id: 1,
   type: "ai",
   message:
     "Hello! I'm your AI health assistant. I can help you in two ways:\n\n1. 🩺 Find and book appointments with specialist doctors\n2. 💬 Provide health guidance and answer your questions\n\nPlease describe your symptoms or health concerns, and I'll assist you accordingly!",
@@ -66,7 +66,7 @@ export default function ConsultationDialog({
 
   const addMessage = (message: string, type: "ai" | "user") => {
     const newMessage: ChatMessage = {
-      id: Date.now() + Math.random(), // Use timestamp + random for unique IDs
+      id: chatMessages.length + 1,
       type,
       message,
       timestamp: new Date(),
@@ -92,43 +92,7 @@ export default function ConsultationDialog({
       return aiResponse.message;
     } catch (error) {
       console.error("Error getting AI health advice:", error);
-
-      // Check if it's a service overload error
-      const errorMessage = error instanceof Error ? error.message : "";
-      const isOverloaded =
-        errorMessage.includes("overloaded") || errorMessage.includes("503");
-
-      // Provide specific advice based on symptoms when AI fails
-      const queryLower = userQuery.toLowerCase();
-
-      if (queryLower.includes("tooth") || queryLower.includes("dental")) {
-        return `I'm sorry to hear you're experiencing a toothache 🦷. ${
-          isOverloaded ? "The AI service is currently busy, but " : ""
-        }Here's immediate guidance:
-
-🚨 **Immediate Care:**
-• Take over-the-counter pain relief (ibuprofen or acetaminophen)
-• Rinse with warm salt water (½ tsp salt in 8oz warm water)
-• Apply cold compress to outside of cheek for 15-20 minutes
-• Avoid extremely hot, cold, or sweet foods/drinks
-
-⚠️ **See a Dentist If:**
-• Pain is severe or persistent (>24 hours)
-• You have facial swelling
-• You develop a fever
-• You see pus or taste something bad
-• You have trouble swallowing
-
-**🦷 Next Steps:** Schedule an appointment with a dentist as soon as possible. Dental pain often indicates an underlying issue that needs professional treatment.
-
-**⚠️ Important:** This is general guidance only. Please consult with a qualified dental professional for personalized care.`;
-      }
-
-      const serviceMessage = isOverloaded
-        ? "The AI service is currently experiencing high demand and is temporarily unavailable."
-        : "I'm currently experiencing technical difficulties.";
-
-      return `I apologize, but ${serviceMessage} For your health concerns, I recommend:
+      return `I apologize, but I'm currently experiencing technical difficulties. For your health concerns, I recommend:
 
 🩺 **Immediate Steps:**
 • Monitor your symptoms and note any changes
@@ -284,20 +248,16 @@ Please let me know which option you prefer!`,
       return;
     }
 
-    // Check if user wants to see doctors (works both when doctors are already filtered and when they're not)
-    const wantsToDoctors =
-      lowerInput.includes("see doctors") ||
-      lowerInput.includes("show doctors") ||
-      lowerInput.includes("available doctors") ||
-      lowerInput.includes("show me doctors") ||
-      lowerInput.includes("show me the doctors") ||
-      lowerInput.includes("book appointment") ||
-      lowerInput.includes("1") ||
-      lowerInput.includes("option 1") ||
-      lowerInput.includes("first option");
-
     // Check if doctors are already shown for continued chat
     if (showDoctorsList) {
+      const wantsToDoctors =
+        lowerInput.includes("see doctors") ||
+        lowerInput.includes("show doctors") ||
+        lowerInput.includes("available doctors") ||
+        lowerInput.includes("book appointment") ||
+        lowerInput.includes("1") ||
+        lowerInput.includes("option 1");
+
       if (wantsToDoctors && filteredDoctors.length > 0) {
         setTimeout(() => {
           addMessage(
@@ -306,8 +266,6 @@ Please let me know which option you prefer!`,
           );
           setShowDoctorsList(true);
         }, 1000);
-        setUserInput("");
-        return;
       } else {
         // Provide health guidance
         addMessage(
@@ -339,15 +297,6 @@ Is there anything specific about your health concerns you'd like me to explain f
           }
         }, 1000);
       }
-    } else if (wantsToDoctors && filteredDoctors.length > 0) {
-      // User wants to see doctors and we have filtered doctors but haven't shown them yet
-      setTimeout(() => {
-        addMessage(
-          `Perfect! Here are the available specialist doctors who can help with your symptoms. Please select a doctor below to book an appointment:`,
-          "ai"
-        );
-        setShowDoctorsList(true);
-      }, 1000);
     } else {
       // Initial symptom analysis
       await handleSymptomAnalysis(userInput);
